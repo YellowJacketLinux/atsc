@@ -1,0 +1,140 @@
+\NeedsTeXFormat{LaTeX2e}
+\def\fileversion{0.1}
+\def\filedate{2021/07/19}
+\ProvidesPackage{amplgrgreek}[\filedate\space v\fileversion]
+%% Copyright 2021 The Anymouse Prophet
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This file may also be distributed and/or modified under the
+% conditions of the MIT license. See
+%   https://opensource.org/licenses/MIT
+%
+% To include this file in a larger project, you may choose
+% one or both licenses at your discretion.
+%
+\message{`amplgrgreek' v\fileversion, \filedate\space Sets up Greek fonts (anymouseprophet)}
+
+\RequirePackage{iftex}
+\RequirePackage{kvoptions}
+\RequirePackage{ifthen}
+\RequirePackage{substr}
+% defaults
+\providecommand{\ampusefontspec}{no}
+\newcommand{\ampgreekfontname}{artemisia}
+\providecommand{\amppdftexenc}{\encodingdefault}%preserve what is already set if already set
+\ifthenelse{\equal{\encodingdefault}{OT1}} {
+  \renewcommand{\amppdftexenc}{T1}
+}{}
+\providecommand{\ampfontspecloaded}{no}%gets redefined later
+\@ifpackageloaded{fontspec}{
+  \renewcommand{\ampfontspecloaded}{yes}
+  \renewcommand{\ampusefontspec}{yes}
+}{
+  \renewcommand{\ampusefontspec}{no}
+}
+%sometimes used in other packages I write
+\providecommand{\ampfoundfont}{no}% now redefine it
+\renewcommand{\ampfoundfont}{no}
+%
+\define@key{amp}{fontspec}[yes]{\renewcommand{\ampusefontspec}{#1}}
+\define@key{amp}{lgrfont}[artemisia]{\renewcommand{\ampgreekfontname}{#1}}
+\ProcessKeyvalOptions{amp}
+%postprocess
+%
+% make sure to turn fontspec off if not loaded already
+\ifthenelse{\equal{\ampfontspecloaded}{no}}{
+  \renewcommand{\ampusefontspec}{no}
+}{}
+% make sure to turn fontspec off if anything other than yes
+\ifthenelse{\equal{\ampusefontspec}{yes}}{}{
+  \renewcommand{\ampusefontspec}{no}
+}
+% test for lgr testfile
+\def\lgrtestfile{lgr\ampgreekfontname .fd}
+\IfFileExists{\lgrtestfile}{}{% else
+  \PackageWarning{amplgrgreek}{LGR encoding definition \lgrtestfile{} not found, using artemisia font instead}
+  \renewcommand{\ampgreekfontname}{artemisia}
+}
+\ifthenelse{\equal{\ampusefontspec}{yes}}{
+  \newcommand{\ampgreekfontnamesubstring}{,\ampgreekfontname ,}
+  \IfSubStringInString{\ampgreekfontnamesubstring}{,artemisia,bodoni,neohellenic,}{}{%
+    \renewcommand{\ampusefontspec}{no}
+  }
+}{}
+%
+% now do the font stuff
+\ifthenelse{\equal{\ampusefontspec}{yes}}{%
+  %
+  \ifthenelse{\equal{\ampgreekfontname}{artemisia}}{
+    %\IfFileExists{GFSArtemisiaBoldIt.otf}{
+    \IfFileExists{article.cls}{
+      \newfontfamily{\ampunigreek}{Artemisia}[ Ligatures = TeX ,
+        Extension   = .otf ,
+        Scale = MatchLowercase ,
+        UprightFont = GFS* ,
+        ItalicFont  = GFS*It ,
+        BoldFont    = GFS*Bold ,
+        BoldItalicFont = GFS*BoldIt ]
+      \renewcommand{\ampfoundfont}{yes}
+    }{}
+  }{}
+  %
+  \ifthenelse{\equal{\ampgreekfontname}{bodoni}}{
+    %\IfFileExists{GFSBodoniBoldIt.otf}{
+    \IfFileExists{article.cls}{
+      \newfontfamily{\ampunigreek}{Bodoni}[ Ligatures = TeX ,
+        Extension   = .otf ,
+        Scale = MatchLowercase ,
+        UprightFont = GFS* ,
+        ItalicFont  = GFS*It ,
+        BoldFont    = GFS*Bold ,
+        BoldItalicFont = GFS*BoldIt ]
+      \renewcommand{\ampfoundfont}{yes}
+    }{}
+  }{}
+  %
+  %%?? didot
+  %
+  \ifthenelse{\equal{\ampgreekfontname}{neohellenic}}{
+    %\IfFileExists{GFSBodoniBoldIt.otf}{
+    \IfFileExists{article.cls}{
+      \newfontfamily{\ampunigreek}{Neohellenic}[ Ligatures = TeX ,
+        Extension   = .otf ,
+        Scale = MatchLowercase ,
+        UprightFont = GFS* ,
+        ItalicFont  = GFS*It ,
+        BoldFont    = GFS*Bold ,
+        BoldItalicFont = GFS*BoldIt ]
+      \renewcommand{\ampfoundfont}{yes}
+    }{}
+  }{}
+  %
+  % define the amptextgreek command
+  %
+  \ifthenelse{\equal{\ampfoundfont}{yes}}{
+    % this one is not intended for use outside of the package code
+    \newcommand{\amptextunigreek}[1]{\begingroup\ampunigreek#1\endgroup}
+    % below is for use outside the package
+    % in future not alias: with lua if needed, detect if argument is all 8-bit. If yes, translate from LGR to unicode first
+    \newcommand*{\amptextgreek}{\amptextunigreek}
+  }{}
+}{}
+\ifthenelse{\equal{\ampfoundfont}{no}}{%do it the replacefonts way
+  \ifthenelse{\equal{\ampfontspecloaded}{yes}}{
+    \RequirePackage[LGR,TU]{fontenc}
+  }{
+    \RequirePackage[LGR,\amppdftexenc]{fontenc}
+  }
+  \RequirePackage{substitutefont}
+  \substitutefont{LGR}{\rmdefault}{\ampgreekfontname}
+  \substitutefont{LGR}{\sfdefault}{\ampgreekfontname}
+  \newcommand{\amptextgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
+}
+\endinput

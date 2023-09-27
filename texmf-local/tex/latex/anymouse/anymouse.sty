@@ -1,0 +1,274 @@
+\NeedsTeXFormat{LaTeX2e}
+\def\fileversion{0.6}
+\def\filedate{2021/08/11}
+\ProvidesPackage{anymouse}[\filedate\space v\fileversion]
+%% Copyright 2021 The Anymouse Prophet
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This file may also be distributed and/or modified under the
+% conditions of the MIT license. See
+%   https://opensource.org/licenses/MIT
+%
+% To include this file in a larger project, you may choose
+% one or both licenses at your discretion.
+%
+\message{`anymouse' v\fileversion, \filedate\space Loads fonts and macros for Pipfrosch Press publications (anymouseprophet)}
+%
+\providecommand{\ampfontspecloaded}{no}
+%
+\RequirePackage{ifthen}
+\RequirePackage{iftex}
+\RequirePackage{kvoptions}
+\RequirePackage{siunitx}
+\RequirePackage{letltxmacro}
+\RequirePackage[table,usenames,dvipsnames]{xcolor}
+\RequirePackage{soul}
+\RequirePackage{afterpage}
+%
+% Font Encoding notes
+%
+% With pdfLaTeX, TeXLive 2021 defaults to OT1 if not specified.
+% With LuaLaTeX, TeXLive 2021 defaults to TU if not specified, even before fontspec is called.
+%
+% If using T4 or T5 the user should \newcommand{\amppdftexenc}{T4} or \newcommand{\amppdftexenc}{T5}
+%  before loading this package so that pdflatex uses right encoding and so that when using LuaLaTeX
+%  the edition=reduced doesn't try to use the "PDF Base 14" Type 1 fonts.
+%
+% The encoding gets set if pdflatex is the compiler.
+%
+\providecommand{\amppdftexenc}{\encodingdefault}%preserve what is already set if already set
+\ifthenelse{\equal{\amppdftexenc}{OT1}}{
+  \renewcommand{\amppdftexenc}{T1}
+}{}
+\ifthenelse{\equal{\amppdftexenc}{TU}}{
+  \renewcommand{\amppdftexenc}{T1}
+}{}
+%
+%
+\ifpdftex
+  % set inputenc and fontence
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[\amppdftexenc]{fontenc}
+  \renewcommand{\ampfontspecloaded}{no}
+\else
+  \RequirePackage{fontspec}
+  \renewcommand{\ampfontspecloaded}{yes}
+\fi
+% default states
+\newcommand{\ampedition}{canonical}
+\newcommand{\pdftextedition}{Canonical PDF}
+\newcommand{\textedition}{Canonical}
+\newcommand{\ampcolor}{yes}
+\newcommand{\mathfonts}{no}
+\newcommand{\ampipafont}{no}
+\newcommand{\lgrgreek}{no}
+\newcommand{\ampgreekinput}{utf8}
+\newcommand{\mkisbn}{no}
+\newcommand{\ampdraft}{no}
+%
+\define@key{amp}{edition}[canonical]{\renewcommand{\ampedition}{#1}}
+\define@key{amp}{lgrfont}[artemisia]{\renewcommand{\lgrgreek}{#1}}
+\define@key{amp}{gkinput}[utf8]{\renewcommand{\ampgreekinput}{\lowercase{#1}}}
+\define@key{amp}{ipa}[charis]{\renewcommand{\ampipafont}{#1}}
+\define@key{amp}{math}[]{\renewcommand{\mathfonts}{yes}}
+\define@key{amp}{isbn}[]{\renewcommand{\mkisbn}{yes}}
+\define@key{amp}{draft}[]{\renewcommand{\ampdraft}{yes}}
+\InputIfFileExists{./anymouse.cfg}{}{}
+\ProcessKeyvalOptions{amp}
+% post process
+\ifthenelse{\equal{\ampedition}{canonical}}{}{%change defaults as needed
+  \ifthenelse{\equal{\ampedition}{reduced}}{
+    \renewcommand{\pdftextedition}{Reduced File Size PDF}
+    \renewcommand{\textedition}{Reduced File Size}
+    \ifthenelse{\equal{\amppdftexenc}{T1}}{
+      \ifthenelse{\equal{\mathfonts}{yes}}{
+        \IfFileExists{mtpro2.sty}{}{
+          \PackageWarning{anymouse}{MathTime Pro 2 not available, using TeX Gyre fonts}
+          \renewcommand{\ampedition}{notreduced}
+        }
+      }{}
+    }{
+      \renewcommand{\ampedition}{notreduced}%so it doesn't load the T1 adobe/URW fonts
+    }
+  }{}
+  \ifthenelse{\equal{\ampedition}{grayscale}}{
+    \renewcommand{\pdftextedition}{Grayscale PDF}
+    \renewcommand{\textedition}{Grayscale}
+    \renewcommand{\ampcolor}{no}
+  }{}
+  \ifthenelse{\equal{\ampedition}{greyscale}}{
+    \renewcommand{\ampedition}{grayscale}
+    \renewcommand{\pdftextedition}{Grayscale PDF}
+    \renewcommand{\textedition}{Grayscale}
+    \renewcommand{\ampcolor}{no}
+  }{}
+  \ifthenelse{\equal{\ampedition}{sans}}{
+    \renewcommand{\pdftextedition}{Sans Serif PDF}
+    \renewcommand{\textedition}{Sans Serif}
+    \renewcommand{\ampcolor}{no}
+  }{}
+  \ifthenelse{\equal{\ampedition}{printshop}}{
+    \renewcommand{\pdftextedition}{Hardcover}
+    \renewcommand{\textedition}{Hardcover}
+  }{}
+}
+\ifthenelse{\equal{\mkisbn}{yes}}{
+  \RequirePackage{ampean13isbn}
+}{}
+
+%%%  font definitions %%%
+\newcommand{\loadstandardfonts}{%
+  \ifthenelse{\equal{\ampfontspecloaded}{yes}}{
+    \setmainfont
+      [ Ligatures   = TeX ,
+        Extension   = .otf ,
+        UprightFont = *-regular ,
+        ItalicFont  = *-italic ,
+        BoldFont    = *-bold ,
+        BoldItalicFont = *-bolditalic ]
+      {texgyretermes}
+    \setsansfont
+      [ Ligatures   = TeX ,
+        Extension   = .otf ,
+        Scale = MatchLowercase ,
+        UprightFont = *-regular ,
+        ItalicFont  = *-italic ,
+        BoldFont    = *-bold ,
+        BoldItalicFont = *-bolditalic ]
+      {texgyreheros}
+  }{% for pdftex
+    \RequirePackage{newtxtext}
+  }
+}
+\newcommand{\loadsansfonts}{%
+  % fixme - clear sans not suitable for T5 (Vietnamese)
+  %  or T4
+  \ifthenelse{\equal{\ampfontspecloaded}{yes}}{
+    \setmainfont
+      [ Ligatures   = TeX ,
+        Extension   = .ttf ,
+        UprightFont = *-Regular ,
+        ItalicFont  = *-Italic ,
+        BoldFont    = *-Medium ,
+        BoldItalicFont = *-MediumItalic ]
+      {ClearSans}
+    \setsansfont
+      [ Ligatures   = TeX ,
+        Extension   = .ttf ,
+        UprightFont = *-Regular ,
+        ItalicFont  = *-Italic ,
+        BoldFont    = *-Bold ,
+        BoldItalicFont = *-BoldItalic ]
+      {ClearSans}
+  }{
+    \RequirePackage[sfdefault]{ClearSans}
+  }
+  \RequirePackage{ragged2e}
+  \setlength{\RaggedRightParindent}{\parindent}
+}
+\newcommand{\loadmonofont}{%
+  % fixme - spacemono not suitable for T5 (Vietnamese)
+  %  or T4
+  \RequirePackage{spacemono}
+}
+\newcommand{\loadmathfonts}{%
+  \RequirePackage{amssymb}
+  \RequirePackage{amsmath}
+  \RequirePackage{bm}
+  \ifthenelse{\equal{\ampfontspecloaded}{yes}}{
+    \RequirePackage{unicode-math}
+    \defaultfontfeatures{
+      Extension = .otf}
+    \setmathfont{texgyretermes-math.otf}
+  }{
+    \RequirePackage{newtxmath}
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define the main, serif fonts, monospace fonts %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifthenelse{\equal{\ampedition}{reduced}}{}{
+  \ifthenelse{\equal{\ampedition}{sans}}{
+    \loadsansfonts
+  }{
+    \loadstandardfonts
+  }
+  \loadmonofont
+  \ifthenelse{\equal{\mathfonts}{yes}}{
+    \loadmathfonts
+  }{}
+}
+
+%%%%%%%%%%%%%%%
+% IPA package %
+%%%%%%%%%%%%%%%
+\ifthenelse{\equal{\ampipafont}{no}}{}{% only do this if not no
+  \RequirePackage[unicodefont=\ampipafont]{ampt3ipa}
+}
+
+%%%%%%%%%%%%%%%%%%%%%
+% LGR Greek support %
+%%%%%%%%%%%%%%%%%%%%%
+\ifthenelse{\equal{\lgrgreek}{no}}{}{% only do this if not no
+  %\ampgreekinput
+  \ifthenelse{\equal{\ampgreekinput}{lgr}}{
+    \RequirePackage[fontspec=no,lgrfont=\lgrgreek]{amplgrgreek}
+  }{
+    \RequirePackage[lgrfont=\lgrgreek]{amplgrgreek}
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define type of highlight %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifthenelse{\equal{\ampcolor}{yes}}{}{%else
+  \renewcommand*{\hl}{\ul}
+}
+
+% hack for Adobe Type 1 fonts when LuaLaTeX is used
+\ifthenelse{\equal{\ampedition}{reduced}}{
+  % only ever used with T1
+  \RequirePackage[T1]{fontenc}
+  \renewcommand{\rmdefault}{ptm}
+  \renewcommand{\sfdefault}{phv}
+  \renewcommand{\ttdefault}{pcr}
+  \ifthenelse{\equal{\mathfonts}{yes}}{
+    \RequirePackage{amssymb}
+    \RequirePackage{amsmath}
+    \RequirePackage{bm}
+    \RequirePackage[lite]{mtpro2}
+    %fix bug in mtpro2 -- see https://tex.stackexchange.com/questions/87419/conflict-between-mathtime-pro-2-refcheck-and-braces-in-text-mode
+    \DeclareRobustCommand\{{\ifmmode\lbrace\else\textbraceleft\fi}
+    \DeclareRobustCommand\}{\ifmmode\rbrace\else\textbraceright\fi}
+  }{}
+}{}
+
+% for reducing the monospace font size
+\LetLtxMacro\oldttfamily\ttfamily
+\DeclareRobustCommand{\ttfamily}{\oldttfamily\csname ttsize\endcsname}
+\def\ttsize{\small}
+\newcommand{\setttsize}[1]{\def\ttsize{#1}}
+
+% reset notreduced to reduced
+\ifthenelse{\equal{\ampedition}{notreduced}}{
+  \renewcommand{\ampedition}{reduced}
+}{}
+% turn on microtype
+\RequirePackage{microtype}
+% draft ??
+\ifthenelse{\equal{\ampedition}{canonical}}{
+  \ifthenelse{\equal{\ampdraft}{yes}}{
+    \renewcommand{\pdftextedition}{Draft}
+    \renewcommand{\textedition}{Draft}
+  }{}
+}{}
+% end of style
+\endinput

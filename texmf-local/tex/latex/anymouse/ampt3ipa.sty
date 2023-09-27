@@ -1,0 +1,111 @@
+\NeedsTeXFormat{LaTeX2e}
+\def\fileversion{0.1}
+\def\filedate{2021/07/20}
+\ProvidesPackage{ampt3ipa}[\filedate\space v\fileversion]
+%% Copyright 2021 The Anymouse Prophet
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This file may also be distributed and/or modified under the
+% conditions of the MIT license. See
+%   https://opensource.org/licenses/MIT
+%
+% To include this file in a larger project, you may choose
+% one or both licenses at your discretion.
+%
+\message{`ampt3ipa' v\fileversion, \filedate\space Sets up IPA fonts (anymouseprophet)}
+
+\RequirePackage{iftex}
+\RequirePackage{kvoptions}
+\RequirePackage{ifthen}
+\RequirePackage{substr}
+\providecommand{\ampusefontspec}{no}
+\newcommand{\ampunicodefontfontname}{charis}
+\providecommand{\amppdftexenc}{\encodingdefault}%preserve what is already set if already set
+\ifthenelse{\equal{\amppdftexenc}{OT1}}{
+  \renewcommand{\amppdftexenc}{T1}
+}{}
+\ifthenelse{\equal{\amppdftexenc}{TU}}{
+  \renewcommand{\amppdftexenc}{T1}
+}{}
+\providecommand{\ampfontspecloaded}{no}%gets redefined later
+\@ifpackageloaded{fontspec}{
+  \renewcommand{\ampfontspecloaded}{yes}
+  \renewcommand{\ampusefontspec}{yes}
+}{
+  \renewcommand{\ampusefontspec}{no}
+}
+%
+%sometimes used in other packages I write
+\providecommand{\ampfoundfont}{no}% now redefine it
+\renewcommand{\ampfoundfont}{no}
+%
+\define@key{amp}{fontspec}[yes]{\renewcommand{\ampusefontspec}{#1}}
+\define@key{amp}{unicodefont}[charis]{\renewcommand{\ampunicodefontfontname}{#1}}
+\ProcessKeyvalOptions{amp}
+%postprocess
+%
+% make sure to turn fontspec off if not loaded already
+\ifthenelse{\equal{\ampfontspecloaded}{no}}{
+  \renewcommand{\ampusefontspec}{no}
+}{}
+% make sure to turn fontspec off if anything other than yes
+\ifthenelse{\equal{\ampusefontspec}{yes}}{}{
+  \renewcommand{\ampusefontspec}{no}
+}
+% define fonts
+\ifthenelse{\equal{\ampusefontspec}{yes}}{%
+  \ifthenelse{\equal{\ampunicodefontfontname}{doulis}}{
+    % use Doulis SIL
+    \newfontface{\ipafont}{Doulos_SIL_Regular}[ Ligatures = TeX ,
+      Extension   = .ttf ,
+      Scale = MatchLowercase ]
+    \renewcommand{\ampfoundfont}{yes}
+  }{}
+  \ifthenelse{\equal{\ampunicodefontfontname}{gentium}}{
+    % use Gentium
+    \newfontfamily{\ipafont}{GentiumPlus}[ Ligatures = TeX ,
+      Extension   = .ttf ,
+      Scale = MatchLowercase ,
+      UprightFont = *-R ,
+      ItalicFont  = *-I ]
+    \renewcommand{\ampfoundfont}{yes}
+  }{}
+  \ifthenelse{\equal{\ampfoundfont}{yes}}{}{% apply the default
+    % use Charis SIL
+    \newfontfamily{\ipafont}{CharisSIL}[ Ligatures = TeX ,
+      Extension   = .ttf ,
+      Scale = MatchLowercase ,
+      UprightFont = *-R ,
+      ItalicFont  = *-I ,
+      BoldFont    = *-B ,
+      BoldItalicFont = *-BI ]
+  }
+  \newcommand{\ampunicodeipa}[1]{\begingroup\ipafont#1\endgroup}
+}{}
+% set up substitutefonts
+\ifthenelse{\equal{\ampfontspecloaded}{yes}}{
+  \RequirePackage[T3,TU]{fontenc}
+}{
+  \RequirePackage[T3,\amppdftexenc]{fontenc}
+}
+\RequirePackage{substitutefont}
+%T3 drivers exist for these that point to the TIPA fonts
+\substitutefont{T3}{\rmdefault}{ptm}
+\substitutefont{T3}{\sfdefault}{phv}
+\substitutefont{T3}{\ttdefault}{cmtt}
+\newcommand{\amptipa}[1]{\begingroup\fontencoding{T3}\selectfont#1\endgroup}
+\newcommand{\amptextipa}[2]{%
+  \ifthenelse{\equal{\ampusefontspec}{yes}}{%
+    \ampunicodeipa{#1}%
+  }{%
+    \amptipa{#2}%
+  }%
+}
+\endinput
