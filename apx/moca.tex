@@ -1,0 +1,224 @@
+\chapter{A MoCA Compromise}
+\label{apx:moca}
+
+If the FCC decides to allow broadcasters to continue to broadcast encrypted \atsc{3.0}
+then it is \textbf{imperative} that the FCC require
+\ngtv{} certified tuners to implement \xdband{}~2.5 as a means by which to
+assist households in achieving a stable Internet service at the \atsc{3.0} tuner.
+
+It is my \emph{hope} that those behind \ngtv{} certification will see the wisdom in
+implementing MoCA as part of the standard even without pressure from the FCC.
+
+DirecTV `SWM' set-top boxes have built-in \eband{} clients (sometimes referred to as DECA),
+Dish Network `Hopper and Joey' set-top boxes have built-in \fband{} clients, and many Cable
+Television and TiVO set-top boxes have either built-in \dband{} or \xdband{} clients.
+
+MoCA is an excellent networking solution when coaxial cables are involved. The Commercial
+television delivery services that depend upon an Internet connection know this and have
+implemented it, but I have not been able to find a single \atsc{1.0} or \atsc{3.0} tuner
+that implements MoCA. That needs to change.
+
+Many housing units in the United States of America already have coaxial cable infrastructure
+installed and this infrastructure usually originates in a location close to the same
+NEC compliant source of ground that an outdoor antenna is required by code to be bonded
+to. This allows outdoor (or attic) antennas to connect to the distribution coaxial splitter
+instead of Cable Television service, and also make it easy to run a MoCA bridge on that coaxial
+network.
+
+If all \ngtv{} tuners are \xdband{}~2.5 clients then providing them with stable
+Internet access so they can retrieve decryption keys becomes as simple as connecting a
+single \xdband{}~2.5 adapter to both the coaxial distribution splitter and to the
+Internet router.
+
+\ngtv{} tuners should use \moca{2.5} rather than \moca{2.0} so that users who want additional
+security can enable \textmdef{MoCA Protected Setup} (aka MPS). \moca{3.0} can optionally
+be implemented but would be wasteful on \atsc{3.0} tuners that have no need for the
+bandwidth capabilities beyond \moca{2.5}. \xdband{} should be used because it does not collide
+with the RF frequencies used by broadcast television.
+
+As \moca{2.5} networks are limited to 16 nodes, \atsc{3.0} tuners should have the ability to
+disable their built-in MoCA client \emph{even when a MoCA network is present} just in case
+the household is using MoCA for lots of other things too and is running low on nodes.
+
+\ngtv{} tuners should continue to offer WiFi connectivity on the \SI{2.4}{\giga\hertz} band
+and the \SI{5}{\giga\hertz} band and ideally should also offer an Ethernet jack so that
+Internet access can still be achieved in households where MoCA is not a workable solution---such
+as households that use one indoor antenna per television and do not use a coaxial cable network.
+
+If \ngtv{} requires MoCA clients be coupled with \atsc{3.0} tuners for certification, then the
+odds of a tuner being capable of retrieving the decryption keys even when the tuner located in
+a WiFi dead spot or problem spot within the home will increase significantly.
+
+If someone can't change the channel because the microwave is on, it will be very annoying. That
+sometimes happens with \SI{2.4}{\giga\hertz} WiFi but would not be an issue with MoCA.
+
+If \ngtv{} is going to use an active Internet connection, then \xdband{} \textbf{MUST} be part
+of the \ngtv{} standard.
+
+
+\section{MoCA Retrofit Kit}
+
+Some televisions with \atsc{3.0} tuners and some stand-alone \atsc{3.0} tuners that bear
+a \ngtv{} certification are already on the market, and I suspect many more have
+already been designed for the 2024 model year and it would be a financial burden to
+forbid those products from hitting the market.
+
+For such devices, I recommend a subsidized \textmdef{MoCA Retrofit Kit} be provided to
+low-income households who have such devices. Unfortunately, this kit would be
+useless for \atsc{3.0} tuners that lack an Ethernet jack.
+
+Specific products mentioned below are simply products that I have personal experience with.
+It is possible there are products from other manufacturers that are better suited for this
+purpose.
+
+The kit should include the following components:
+
+\begin{description}
+  \item[One Passive Two-Way MoCA Splitter] \hfill \\ I have personal experience with the
+    \myhref{https://www.antronix.com/pdf/ds-1181-ss-a02-mmc1000-splitters.pdf}{Antronix MMC1002H-B}
+    splitter to provide D-Band MoCA on `OTA Broadcast Television' coaxial networks. It works
+    well.
+  \item[One \xdband{}~2.5 Adapter] \hfill \\ I have personal experience with the
+    \myhref{https://www.screenbeam.com/products/ecb6250/}{ScreenBeam ECB6250}
+    MoCA 2.5 Network Adapters. That particular model has a \SI{1}{\giga\bit\per\second} Ethernet jack.
+    They also make a more expensive model with a \SI{2.5}{\giga\bit\per\second} Ethernet jack
+    (the ECB7250) but no \atsc{2.5} tuner needs that capability.
+  \item[Two 18 Inch RG6 Coaxial Cables] \hfill \\
+    One is needed to connect the television to the passive two-way splitter, one is needed to
+    connect the MoCA Adapter to the passive two-way splitter.
+  \item[One 3 foot Cat5e Patch Cable] \hfill \\
+    Cat5e patch cables are far more flexible than Cat6 patch cables and are perfectly capable of
+    handling the network speeds required of a MoCA 2.5 network.
+\end{description}
+
+In a nutshell, rather than having the antenna cable feeding the \atsc{3.0} tuner directly, it would
+feed the two-way passive splitter. One split would then feed the \atsc{3.0} tuner, and the other
+split would feed the \xdband{}~2.5 adapter which in turn would provide an Ethernet connection
+to the \atsc{3.0} tuner so that the tuner, thus allowing decryption of encrypted \atsc{3.0}
+broadcasts in cases where the tuner can not get a reliable WiFi connection.
+
+\subsection{Cost Estimate}
+
+Pricing those items (excluding the cables) at Amazon comes to about \$90.
+
+That cost could probably be significantly reduced if purchased in bulk from the product manufacturers
+but I do not \emph{personally} have the business experience needed to estimate such a cost reduction
+and I would prefer not to speculate in a document I am sending to the government.
+
+The ECB6250 as sold at Amazon comes with one coaxial cable and one Ethernet cable. The coaxial
+cable that it comes with---to be frank---is junk. The cable is only dual-shield RG6 and thus susceptible
+to RF interference from power cables which is likely when installed in the proximity of a television,
+and the connectors on it are junk.
+
+A 250 foot pull box of Mediabridge Quad-Shield RG6 costs about \$66 and would produce at least 150
+\SI{18}{inch} cables, enough for 75 \textmdef{Moca Retrofit Kits}. That is 88¢ per kit.
+
+A box of 50 quality Klein compression F connectors for quad-shield coax costs about \$45 and would
+provide for 12 \textmdef{Moca Retrofit Kits}. That is \$3.75 per kit.
+
+Ignoring labor, manually created quality RG6 cables would thus cost under \$5 per kit.
+
+Again, I simply do not have the business experience to estimate how much that cost would be reduced
+by ordering from a cable manufacturer that produces them in bulk by machine, but I would be very
+surprised if the cost was not cut down by more than half. Quality quad-shield RG6 cables purchased in bulk
+would not significantly add to the cost of the \textmdef{Moca Retrofit Kit} and would greatly decrease
+interference problems that need to be solved post-install.
+
+The Ethernet cable that the ECB6250 kit comes with is probably sufficient but quality patch cables
+purchased in bulk are extremely cheap, they are heavily used in today's high-tech industry and are
+mass-produced by numerous companies.
+
+Three foot Cat5e patch cables purchased in quantities of 500 cables from
+\myhref{https://rb.gy/s18bc}{CableWholesale} currently cost \$1.13 each and they do offer further
+discounts for larger quantities.
+
+\subsection{Fire Safety}
+
+During my early twenties, I lived for a time near Home, Washington (Key Peninsula). My back caught
+on fire. The fire was the result of inadequate safety that was a direct result of the poverty conditions
+I was living under at the time.
+
+In my case, the fire was the result of wearing a flanel shirt that had likely absorbed gasoline fumes from
+power tools we were using to build a shelter, then ignited by me standing too close to a heat source on a
+cold night when we did not yet have adequate shelter. I should have known better, but poverty sucks.
+Fortunately one of the people living there was a former EMT who had lost his job and was homeless as a
+result, so I did get the best possible first aid when it happened---and the EMTs in the ambulance and the
+doctors were also top notch.
+
+Ever since that incident though I have been paranoid about household fires, which seem to disproportionally
+impact those living in poverty. As the proposed \textmdef{MoCA Retrofit Kit} is intended for those living in
+poverty, fire safety should in my opinion be evaluated.
+
+There are two fire safety concerns I have with the AC to DC transformer that comes with the previously
+mentioned `ScreenBeam ECB6250' kit. Whether these concerns are genuine or not, I can not say, I may
+be being overly paranoid.
+
+The first concern I have is that I see no indication on the transformer itself that it has overcurrent
+protection. It is true that Class~\rom{2} transformers are not capable of producing enough current to
+electrocute someone but if there is a short in the device being powered, fire is still possible.
+
+My second concern is that the transformer included with the `ScreenBeam ECB6250' kit is designed to fit
+standard two-outlet wall receptable such that the body of the transformer does not block the use of
+the outlet receptacle it is not plugged into.
+
+When used for a television, that may actually be a problem. Most television areas have multiple items
+that need to be plugged in, resulting in the use of a power bar. With most power bars, the outlet
+receptacles are arranged such that the transformer body would block adjacent receptacles. This would
+tempt the person to use a short extension cord between the transformer and the power bar, increasing
+the odds of a loose connection causing an arc-fault.
+
+The NEC has required arc-fault circuit breakers for most circuits in a home since 1999 but NEC is
+not law and local code often lags behind the NEC. Furthermore, until 2007 or so (I might not be
+correctly remembering) most arc-fault circuit breakers did not do a very good job at detecting
+arc-faults in extensions to a circuit. Finally, those living in poverty are less likely to be
+living in housing built after arc-fault protected circuits became code.
+
+What I personally did in my current home with MoCA adapters, I used a
+\myamazon{B00QV5Q5HU}{Ugreen} AC to DC transformer that has identical
+electrical specifications (\SI{5}{\volt}, \SI{2}{\ampere}) with an identical positive-center
+DC barrel (OD \SI{3.55}{\milli\meter}, ID \SI{1.35}{\milli\meter}) that has overcurrent protection
+and has the transformer positioned such that it does not block adjacent outlet sockets on a
+typical power bar.
+
+Ideally, housing without arc-fault circuit breakers should install
+\myamazon{B01CG8MP9W}{AFCI receptacles}
+wherever power bars are used---cheaply manufactured power bars themselves are a common source of
+arc-fault fires in addition to issues with cords not being properly plugged in---but that is beyond
+the scope of the FCC or the Broadcast Television Industry.
+
+\subsection{Signal Strength}
+\label{apx:moca:signalstrength}
+
+An unfortunate consequence of a passive two-way splitter is a reduction in the broadcast signal
+strength. The actual signal attenuation that results varies by frequency but it will \emph{always}
+be at least \SI{3}{\decibel} and the number Antronix prints on their two-way MoCA splitter is
+\SI{3.5}{\decibel}.
+
+When a \SI{3.5}{\decibel} loss in broadcast signal strength is an issue, it \emph{usually} can
+be resolved by using a slightly more powerful amplifier, installing a better antenna, or a
+combination of the two.
+
+A technically better solution would be to use a band separator rather than a passive two-way
+splitter.
+
+As far as physical connections are concerned, a band separator is virtually identical to a
+passive two-way splitter. The difference is with a band separator, RF frequencies below a
+specific target are separated to one output and RF frequencies above that target are separated
+to the other target.
+
+An example of a band separator for coaxial cables is the
+\myhref{https://pixelsatradio.com/products/am-fm-band-separator}{Pixel Technologies AMFMBS}.
+That band separator is for radio broadcast bands and is not suitable for this application.
+
+The reason why my recommended \textmdef{MoCA Retrofit Kit} specifies a passive two-way splitter
+instead of a band separator is simply because I am not aware of an existing external coaxial
+band separator that separates the ATSC Broadcast Band from \xdband{} and I suspect there
+is not enough market demand to produce such a product at an affordable price. One certainly
+could be produced, I just question if demand would warrant a supply production at an affordable
+per-unit price.
+
+
+
+
+
+
