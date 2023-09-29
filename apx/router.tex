@@ -1,0 +1,789 @@
+\chapter{Home Internet Service}
+\label{apx:router}
+
+My understanding is that `\ngtv{}' is a certification standard that manufacturers of \atsc{3.0}
+tuners must build their devices to meet or else they do not get to call their product a \ngtv{}.
+
+A similar standard is needed for home routers---to serve the best interest of the consumer.
+
+This standard would \emph{especially} be needed if encrypted \atsc{3.0} broadcasts require an
+active Internet connection to descrypt the stream (seriously, why can't caching the decryption
+key be part of \ngtv{}???) but I believe it is needed even if the FCC does the right thing and
+forbids encrypted broadcasts on public airways.
+
+\section{Internet is a Utility, not a Luxury}
+
+For decades now, the model for home Internet access that has been pushed by both Internet
+Service Providers and the consumer market has been routers that include WiFi antennas---and now
+the trend is getting even worse, now to get `whole house' coverage the consumer has vendor lockin
+and often has to buy (or rent) `Mesh WiFi' extenders that are the same brand and WiFi version as
+the ISP provided router + WiFi. Vendor lockin is \emph{always} bad for the consumer.
+
+Internet service needs to be viewed in a similar fashion as a utility.
+
+With the Electrical utility, the power main and everything behind the power main is part of the
+housing unit. The Electrical utility provides power to the power main, but the main and everything
+behind it is part of the home.
+
+The same can be said for the gas utility, water utility, even the Cable Television utility. Note that
+with Cable Television, the industry wanted to force their proprietary boxes on customers but
+Telecommunications Act of 1996 required them to allow `Cable Cards' to be used in hardware that
+was owned by the consumer.
+
+Also note that in the days of `Ma Bell', the phone company owned all the wiring in the home and
+even owned the telephones in the home. Federal law changed that too, housing had to have a
+demarcation point (usually a punch-down block or an NID) and everything downstream of that
+demarcation point was part of the home, the telephone company simply provided telephone service
+to that demarcation point.
+
+Internet service needs to be the same way. The `Home Network'---a type of LAN in technical terms---should
+be seen as part of the home. The ISP should be seen as a utility provides Internet service to the `Home Network'.
+
+With some broadband services---such as Fiber Optic and Cable Modem service---that frequently is
+the way things are, but there are two growing trend underming that model \emph{especially} for
+low-income households, and the result is an insufficient LAN that provides inferior service.
+
+\section{The Home Local Area Network}
+
+The home \textdef{Local Area Network (LAN)} consists of the router and everything `behind' the router
+whether it is \textmdef{wired} (Ethernet or MoCA) or \textmdef{wireless} (WiFi).
+
+I am actually not opposed to Internet Service Providers opting to provide service that does not meet
+the \textdef{Ideal LAN} described below, but they \emph{should also} offer service that is compatible
+with the \textmdef{Ideal LAN} described below.
+
+\begin{itemize}
+  \item An \textmdef{Ideal LAN} needs to be independent of the service provided by the Internet
+Service Provider.
+  \item Any components of the LAN---including the router---that are provided by the ISP must be either
+        purchased by the consumer outright \emph{at a fair market value} or at the discretion of the ISP,
+        they may be provided on a `rent to own' program. The current scenario where many customers
+        pay monthly `equipment fee' that pays for the equipment the ISP technically still owns many times over
+        needs to stop. The total `rent to own' cost of a component provided by the ISP should never exceed
+        140\% of the fair market value of the equipment.
+  \item Such \textmdef{Ideal LAN} equipment \textbf{MUST} be vendor independent equipment. If the consumer
+        decides they want to switch to a different ISP, the consumer needs to be able to do so \emph{without}
+        needing to replace any of the hardware in an \textmdef{Ideal LAN}.
+  \item Hardware \emph{between} the router and the ISP, such as a modem or ONT, are NOT to be considered
+        part of the \textmdef{Ideal LAN} and may be proprietary and ISP owned.
+\end{itemize}
+
+Some Internet Service Providers---such as T-Mobile and Verizon---currently offer 5G Broadband Internet
+service using a single piece of hardware that connects to their 5G service and only provides Internet
+via WiFi.
+
+For some consumers---especially those in small apartments---that genuinely may be what they want and
+those ISPs shouls be allowed to continue to offer those services.
+
+However, any customer should be able to tell them they want the Internet Service but instead of that
+WiFi only router, they want a modem that connects to an \textmdef{Ideal Local Area Network}.
+
+In the current age of `Internet of Things' where WiFi is necessary for the proper operation of many
+household appliances, the `Router plus Access Point in one device' unit has led to the proliferation
+of `WiFi Extenders' and `Mesh Networks' which I believe is \emph{rarely} a good solution and frequently
+degrades Internet service in the home.
+
+The consumer \textbf{MUST} have the inherent right to design their home network in such a way that
+it properly meets their Internet connectivity needs without limiting their choice in Internet Service
+Providers and without resulting in vendor lock-in to a specific Internet Service Provider.
+
+To accomplish this, there must be a router specification similar in purpose to the \ngtv{} specification
+such that when a consumer buys a router that meets that specification, the consumer knows they can
+build a LAN around that router without any limitation of Internet Service Providers they can choose
+from. That is what this appendix chapter is about.
+
+\section{The Ideal Router}
+
+What I am describing here is something that I call the \textdef{Ideal Router}. It is not the right device
+for every `Home Internet' scenario but I do believe it is the right device for the vast majority of
+`Home Internet' scenarios, which would allow for mass production and thus a low price.
+
+Many homes have what I call a \tdefcab{} which is a box often inset inside a wall that frequently houses
+the following low-voltage signal related wiring related items. Its typical contents follow.
+
+\pagebreak
+
+\begin{itemize}
+  \item For homes with Ufer grounding, a fat copper wire that is bonded to the Concrete Encased Electrode
+        and can be used by coaxial networks and telephone service as an NEC compliant source of ground.
+  \item For homes with `Plain Old Telephone Service', a Telecom NID (Network Interface Device) or a telephone
+        wiring punch-down block.
+  \item The entry point for the Cable Company coaxial cable into the premises.
+  \item The entry point for Satellite Television coaxial cable into the premises.
+  \item The entry point for Television and/or Radio antenna coaxial cable into the premises.
+  \item Any needed coaxial signal amplifiers.
+  \item Any needed coaxial signal distribution splitters.
+  \item The entry point for a Fiber Optic run into the premises.
+\end{itemize}
+
+Sometimes, the \tcab{} is actually two (or more) boxes with the secondary box typically in the basement or a garage.
+Any secondary box will not have a NEC compliant ground source as it is too far away from the power main, but they
+will have low-voltage signal wires coming from the first box. The concept is that safety grounding and sometimes
+signal amplifications takes place in the first box but the signal distribution may take place elsewhere.
+
+Nutshell: \tcab{} as used in this document may be one location but could encompass other locations with wiring
+leading back to one location.
+
+The idea behind the \textmdef{Ideal Router} is a small form factor router that can optionally be installed
+\emph{inside} the \tcab{} along with the source of broadband Internet---so that it is physically close to
+the wiring source of the broadband Internet.
+
+Preliminary specifications for the \textmdef{Ideal Router} follow on the next page.
+
+\clearpage
+
+\begin{description}
+  \item[USB Modem Port] \hfill \\ The router \emph{must} have a USB 3.1 (or better) port that can optionally
+       be used for a USB modem.
+  \item[RJ45 WAN Port] \hfill \\ The router \emph{must} have a single \SI{1}{\giga\bit\per\second} RJ45 WAN port
+       that is capable of pass-through PoE to power a PoE DOCSIS modem or a PoE ONT (Optical Network Terminal).
+       That would reduce the odds of needing a \SI{120}{\vrms} power socket inside the Telecommunications Access
+       Box. The router RJ45 WAN port \emph{may} support speeds beyond \SI{1}{\giga\bit\per\second}.
+  \item[RJ45 LAN Port] \hfill \\ The router \emph{must} have a single \SI{1}{\giga\bit\per\second} RJ45 LAN port
+       that is capable of powering the router via PoE. The router RJ45 LAN port \emph{may} support speeds beyond
+       \SI{1}{\giga\bit\per\second} and \emph{may} have additional RJ45 LAN ports.
+  \item[Coaxial MoCA LAN Port] \hfill \\ The router \emph{must} have a single \SI{75}{\ohm} F-jack port that
+       provides an `Extended D-Band' \moca{2.5} uplink to the LAN. The router \emph{may} implement \moca{3.0}
+       as long as it maintains compatibility with \moca{2.0} and \moca{2.5}.
+  \item[USB-PD Port] \hfill \\ The router \emph{should} have a single `USB-PD' port that can be used to power the
+       router if PoE is not used to power the router.
+  \item[OpenWrt] \hfill \\ The router \emph{must} be able to run \myhref{https://openwrt.org/}{OpenWrt} as the router
+       operating system but it \emph{may} ship with another operating system. As an open-source operating system,
+       OpenWrt reduces the odds of a perfectly functional router from needing to be replaced simply because the
+       manufacturer went out of business or deprecates the model, no longer responding to security vulnerabilities.
+  \item[No Nameserver] \hfill \\ The router \emph{must not} have a nameserver. It is not a bad thing to have a
+       caching recursive nameserver on the LAN, but if present it should be on a physically different piece of
+       hardware than the router for security reasons.
+  \item[No WiFi] \hfill \\ The router \emph{must not} have WiFi antennas.
+\end{description}
+
+Those are my suggested specifications. If the `\textmdef{Ideal Router}' (under that name or another name) were to
+become a standard for home networking, obviously there would have to be discussions about the specification.
+
+Hopefully an `Open Hardware' reference board could be designed that any manufacturer could use as a starting point
+(or just produce as-is).
+
+The sections that follow describe how such an \textmdef{Ideal Router} should be used in a home to provide wired LAN
+service and WiFi service, and how the router would connect to an Internet Service Provider.
+
+Following the suggested network topology sections are additional sections discussing potential implementation issues.
+
+\section{LAN Distribution Switch}
+
+When a home has been wired with Cat5e or better twisted-pair network cables, a network switch will be needed to
+provide LAN access to the home through those network cables.
+
+This switch is what I call the \textdef{LAN Distribution Switch} and should be located in the vicinity of where
+those network cables originate.
+
+When possible, the \textmdef{LAN Distribution Switch} should have a Cat6 uplink to the `RJ45 LAN Port' on the
+\textmdef{Ideal Router}. This uplink cable should be \SIrange{23}{24}{\awg} solid copper so that it properly
+supports Power over Ethernet. In other words, do not use one of those nifty `flat' Cat6 cables for this purpose,
+they tend to only be \SI{30}{\awg} and will overheat and potentially melt when carrying DC current.
+
+When possible, the \textmdef{LAN Distribution Switch} should support the PoE specification sufficient to
+power the \textmdef{Ideal Router} and any Wireless Access Points connected to it that are powered by PoE. A proper
+PoE injector could also be used.
+
+When there is not Cat6 uplink from the \textmdef{LAN Distribution Switch} location to the \textmdef{Ideal Router}
+location, a \moca{2.5} uplink does work very well, I have done this quite successfully in the past.
+
+The power source for the \textmdef{LAN Distribution Switch} (and a PoE injector if used) ideally would be plugged
+into an adequate UPS so that the \textmdef{Ideal Router} does not need to reboot every time there is a
+momentary loss of power---something that happens often in California during the summer as some mis-behaving
+transformers are powered off due to fire conditions.
+
+\section{Extended D-Band MoCA LAN}
+
+The coaxial cable network will need an \xdband{} compatible \textdef{Distribution Splitter} to distribute the
+coaxial signal to the destination jacks. To be \xdband{} compatible, it needs to support RF frequencies up to
+\SI{1675}{\mega\hertz}.
+
+In some cases due to space or other constraints, the \textmdef{Distribution Splitter} may actually be a two- or
+three-way splitter that feeds additional splitters that then feed the coaxial cable runs to the final
+destinations.
+
+The \textmdef{Distribution Splitter} should be a \emph{passive} splitter. They do make amplified splitters that
+work with \xdband{} but they can be problematic and should generally be avoided.
+
+Any needed amplification of the RF signals coming from an ATSC antenna or from the Cable Television service should
+take place \emph{between} the signal source and the \textmdef{Distribution Splitter}.
+
+A power-passing \textmdef{Distribution Splitter} should not be used---or at least not used to pass power.
+Any amplification that uses DC power transmitted over a coaxial cable should have a coaxial PI (e.g.\
+the \myhref{https://www.antronix.com/pdf/DS-1020-SS-A04_ARPI-2000.pdf}{Antronix ARPI-2000}) \emph{between} the
+signal amplifier and the \textmdef{Distribution Splitter}.
+
+When a coaxial Power Inserter (PI) is used, there also should be a coaxial surge protector between the PI
+and the \textmdef{Distribution Splitter} even if there is already a coaxial surge protector between the
+signal source and the signal amplifier.
+
+The purpose of this secondary surge protector is to protect the passive coaxial network from surges on the
+coaxial core that enter through the PI and/or amplifier.
+
+This secondary surge protector \emph{should not} have a bonded ground wire as the coaxial shield on the
+coaxial network should \emph{already} be properly grounded according to NEC specifications where the
+coaxial cable enters the building structure. Multiple paths to ground is \textbf{not} a good thing, it
+can introduce ground loops that cause RF interference.
+
+The \xdband{} compatible splitters that I have extensive \emph{successful} experience with are the Antronix
+\myhref{https://www.antronix.com/pdf/ds-1181-ss-a02-mmc1000-splitters.pdf}{MMC1000-B Series} splitters.
+
+At the input of the \textmdef{Distribution Splitter}, there should be a
+\myhref{https://www.antronix.com/products/filters}{MoCA `Point of Entry' Filter}. For \xdband{},
+the `Point of Entry' filter is basically just a \SI{1002}{\mega\hertz} low-pass filter.
+
+With the coaxial network now properly prepared for MoCA, run a \SI{75}{\ohm} coaxial cable from the
+`Coaxial MoCA LAN Port' on the \textmdef{Ideal Router} to the an available port on the
+\textmdef{Distribution Splitter} and any coaxial jack downstream of the \textmdef{Distribution Splitter}
+is a potential \xdband{} MoCA node.
+
+If every jack on the \textmdef{Distribution Splitter} is already in use, you may need to get creative. For example,
+if there is an 8-way \textmdef{Distribution Splitter} and eight coaxial drops originating from it, one solution would
+be to use a
+\myhref{https://antronix.myshopify.com/collections/antronix-moca-splitters/products/mmc1003bh-b}{MMC1003BH-B}
+balanced three-way splitter. Two of the outputs would each go to a
+\myhref{https://antronix.myshopify.com/collections/antronix-moca-splitters/products/mmc1004h-b}{MMC1004H-B}
+four-way splitter. The third output would be used to connect to the `Coaxial MoCA LAN Port' on the
+\textmdef{Ideal Router}.
+
+
+\subsection{MoCA Only Coaxial Networks}
+
+When the coaxial network is \emph{only} used for MoCA and is not used for either Cable Television or for
+Broadcast Television, then a MoCA `Point of Entry' filter is not needed at the input of the \textmdef{Distribution Splitter}.
+Instead, use the input of the \textmdef{Distribution Splitter} as the connection point for the coaxial connection from the
+`Coaxial MoCA LAN Port' on the \textmdef{Ideal Router}.
+
+Note that in this MoCA only scenario, the coaxial network will not be grounded either by the Cable Company
+demarcation or by the ATSC antenna coaxial grounding. It thus would be a good idea to connect a \SI{10}{\awg}
+bonding wire from the \textmdef{Distribution Splitter} to an NEC compliant source of ground just to provide better
+EMF shielding to the coaxial network.
+
+The next two subsections relate to MoCA on DirecTV and Dish Network and are not related to \xdband{}
+from the \textmdef{Ideal Router}. If you do not care about these alternative MoCA implementations, you
+can skip to section~\ref{apx:router:wifi} on page~\pageref{apx:router:wifi}.
+
+\subsection{DirecTV Note}
+
+My only experience with DirecTV is with single-household SWM installs.
+
+A DirecTV \textmdef{Distribution Splitter} that is used for single household SWM installs is a passive
+splitter but one port on the splitter is power-passing. If you (or the installer, they do not generally
+allow customer self-installs) are going to use that port to power the dish then the coaxial cable coming
+from that port \emph{must} be solid-copper core \emph{and} there are distance limitations. The coaxial
+cables installed by a home-builder are usually copper-clad steel core, which is fine for signal transmission
+but is not suitable for DC power transmission (too much DC resistance).
+
+When the coaxial cable drops in your home are copper-clad steel, do not let the installer tell you they
+have to run new RG6. There are two other solutions:
+
+\begin{enumerate}
+  \item You can put the DirecTV SWM Power Inserter between the dish and the distribution splitter. Their
+        power inserter is big and bulky as the transformer is part of it, and it requires access to a
+        \SI{120}{\vrms} socket. When that is not practical:
+  \item Note that I have not personally tried this. You can use a Holland Electric HRF-PI---which is
+        very compact---between the dish and the distribution splitter. You will need a run of
+        solid-copper core RG6 from the HRF-PI to a location where the DirecTV SWM Power Inserter can
+        be plugged in. Installers might refuse this option as the HRF-PI is not DirecTV approved, but
+        it \emph{should} work. The `DC+RF' port would connect to the dish (and must be solid-copper core
+        RG6). The `RF' port would connect to the input of the DirecTV SWM \textmdef{Distribution Splitter}
+        and can be copper-clad steel RG6. The `DC' port would connect to the DirecTV SWM Power Inserter
+        and would need to be solid-copper core RG6. The DirecTV SWM Power Inserter would no longer be
+        able to have a receiver attached, it now only provides power. All DirecTV receivers have to be
+        downstream of the DirecTV SWM \textmdef{Distribution Splitter} and those runs can be copper-clad
+        steel RG6.
+\end{enumerate}
+
+For MoCA, DirecTV SWM receivers have built-in MoCA clients that use the `E-Band' (\SIrange{400}{700}{\mega\hertz}).
+This is often called `DECA' by users but I am under the impression that `DECA' technically only refers to the
+stand-alone \eband{} adapter that DirecTV manufactures.
+
+The \xdband{} adapter in the \textmdef{Ideal Router} would not be usable for establishing a DirecTV MoCA
+network. Tips on how to get MoCA working without using the \textmdef{Ideal Router} follow.
+
+With DirecTV, you can not use the `Point of Entry' filter described earlier.
+
+DirecTV does make a unit called a `DECA Band Stop Filter'
+(\myhref{https://www.solidsignal.com/directv-band-stop-filter-for-multi-room-viewing-systems-bsfr01}{BSFR01})
+but it seems that with SWM systems it is not needed for single-housing unit installs.
+
+On multi-housing unit installs when a single dish serves multiple residences, each residence served by
+the dish must have its own DirecTV SWM \textmdef{Distribution Splitter} and each DirecTV SWM
+\textmdef{Distribution Splitter} \emph{must} have a BSFR01 installed in the feed to that DirecTV SWM
+\textmdef{Distribution Splitter} to prevent MoCA networks from different housing units interfering with
+each other.
+
+If you live in an apartment with DirecTV service and you can see content on a neighbor's DVR, that `DECA
+Band Stop Filter' is missing.
+
+I am under the \emph{possibly incorrect} impression that with some DirecTV SWM DVR receivers, if you can
+connect the Ethernet jack on the DVR receiver to a working Ethernet jack with network connectivity,
+all SWM DirecTV clients will then be able to use the DirecTV MoCA network to get Internet access.
+
+Another option I \emph{know} works is to buy a
+\myhref{https://www.solidsignal.com/DIRECTV-GigE-DECA-ATT-Network-Adpater-with-Power-Supply-and-Cable-DCAGE11KIT}{DIRECTV
+GigE DECA Kit}.
+
+With that kit, you need to run an RG6 coaxial cable from the adapter to the DirecTV SWM \textmdef{Distribution Splitter}
+and a Cat6 cable from the adapter to a working Ethernet jack that has network connectivity. Then
+all DirecTV SWM receivers on the network will be able to get Internet access through \eband{}.
+
+\subsection{Dish Network Note}
+
+\textbf{Disclaimer:} I have no personal experience with Dish Network.
+
+My understanding is that Dish Network uses the MoCA `F-Band' (\SIrange{650}{875}{\mega\hertz}) and that if your Hopper
+receiver has an Ethernet connection through its Ethernet jack, it will provide Internet through MoCA to all of
+the Joey receivers on the network.
+
+I know nothing about how to provide MoCA to a Dish Network coaxial network if the Hopper is in a location without
+wired Internet access. I can not seem to find any stand-alone \fband{} adapters on the market.
+
+
+
+\section{WiFi LAN}
+\label{apx:router:wifi}
+
+The \textmdef{Ideal Router} does not provide WiFi services itself. Rather, separate `WiFi Access Points'
+should be used that uplink to the \textmdef{Ideal Router}.
+
+Optimal places within the house to place Wireless Access Points should be determined, preferably with the
+help of someone who has experience with WiFi topology. The
+\myhref{https://www.reddit.com/r/HomeNetworking/}{HomeNetworking subreddit} can be extremely helpful for
+figuring out an ideal WAP topology for a home.
+
+Locating and using the optimal locations for Wireless Access Points is a critical step. Many problems that
+people have with WiFi would not exist if they had WAPs located in proper places for whole-house coverage,
+taking into consideration things like high-use areas where users are likely to want to sit and use their
+phone, table, or laptop.
+
+If a location for a WAP is close to a twisted-pair Ethernet jack, the WAP should uplink to the
+\textmdef{LAN Distribution Switch} through that Ethernet jack, using a supplemental network switch between
+the WAP and that Ethernet jack if more than one wired Ethernet device needs to uplink through that jack.
+
+If there is not a twisted-pair Ethernet jack but there is a coaxial jack, the WAP should uplink over MoCA
+using an \xdband{} adapter that is connected to that coaxial jack. Those with DirecTV should use a DECA
+\eband{} adapter instead but be warned the bandwidth is not as good.
+
+If more than one wired Ethernet device needs to uplink through that MoCA adapter, then again, an inexpensive
+Ethernet switch can be used between the various Ethernet devices and the MoCA adapter.
+
+Note that some WAPs are now capable of speeds beyond \SI{1}{\giga\bit\per\second}. If those access points
+have a \SI{2.5}{\giga\bit\per\second} Ethernet jack and is uplinking through MoCA, then it may be worth the
+extra money to buy a \moca{2.5} adapter that also has a \SI{2.5}{\giga\bit\per\second} Ethernet jack.
+
+If the coaxial jack is also needed for a television or Cable set-top box, you can use an \xdband{} compatible
+passive two-way splitter to provide both a MoCA connection and a television connection.
+
+In some cases using a passive two-way splitter can cause signal reception issues, see
+subsection~\ref{apx:moca:signalstrength} on page~\pageref{apx:moca:signalstrength}.
+
+\subsection{WiFi Bands}
+
+If you do not like to waste money, be careful about determining what WiFi bands you actually need and what
+WiFi bands the capitalist marketing machine tells you that you need.
+
+\wifi{3} (\ieee{802.11g}), \wifi{4} (\ieee{802.11n}), \wifi{5} (\ieee{802.11ac}), and \wifi{6} (\ieee{802.11ax})
+prior to \wifi{6e} support WiFi operation on both the \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} bands.
+These WiFi Access Points are often called `Dual-Band' WiFi Access Points.
+
+The \SI{2.4}{\giga\hertz} band has a lower data transfer rate but has a much longer range, making it ideal
+for most IoT devices but not as ideal for high data consumption applications, like downloading all the
+video advertisements on a web page.
+
+The \SI{5}{\giga\hertz} band has a much higher data transfer rate but with a much shorter range, making it
+less ideal for IoT devices that do not need a high data transfer rate but much \emph{much} better for
+devices that do need a high data transfer rate.
+
+\wifi{6e} (\ieee{802.11ax} extended) and \wifi{7} (\ieee{802.11be}) also support the \SI{6}{\giga\hertz} band.
+
+The biggest benefit of the \SI{6}{\giga\hertz} band is that it reduces the congestion of devices fighting
+for bandwidth from the \SI{5}{\giga\hertz} band. This allows more high-data consumption devices to connect
+at the same time (some using \SI{5}{\giga\hertz}, others \SI{6}{\giga\hertz}) and also makes it easier to
+allocate \SI{160}{\mega\hertz} wide channels when \emph{very} high data consumption is genuinely needed
+but a wired network is not available.
+
+I do not believe the vast majority of households will see any benefit from \wifi{6e} or \wifi{7} that they
+would not also see from less expensive \wifi{6} \emph{without} the \SI{6}{\giga\hertz} band. The vast majority
+of households simply do not have the congestion on the \SI{5}{\giga\hertz} band to justify an additional band,
+\emph{especially} if stationary high data consuming devices like gaming consoles can get their uplink to the
+router through MoCA and/or standard Ethernet.
+
+It can be argued---and often is argued---that a third band is beneficial to households by providing a
+band for a mesh network. That is discussed next.
+
+\subsection{Mesh WiFi}
+
+If there is neither a twisted-pair network jack nor a MoCA coaxial jack in the vicinity of where a WAP is
+needed \emph{and} running a network cable is not a possibility, then a Mesh WiFi system may in fact be
+needed.
+
+This should however be a \emph{last} resort solution.
+
+The way Mesh WiFi works, the WAPs use three bands. In addition to the standard \SI{2.4}{\giga\hertz} and
+\SI{5}{\giga\hertz} bands that the access points offer to clients to connect, they have a third antenna
+that either also uses the \SI{5}{\giga\hertz} band or in recent systems, the \SI{6}{\giga\hertz} band.
+
+This third band is used for the Mesh WAPs to communicate with each other.
+
+When a Mesh WAP has a wired (Ethernet or MoCA) uplink, it sends all traffic from its clients through
+that uplink just like a standard WAP would. However, it also is now responsible for all the traffic from
+other Mesh WAP units that do not have a wired uplink but are sending their traffic to it over the third band.
+This potentially reduces the network throughput for its clients.
+
+The farther away two Mesh WAPs that connect to each other are from each other, the slower the communication
+between them becomes. Sometimes the data speed between a Mesh WAP without a wired uplink and a Mesh WAP with
+a wired uplink is so bad that an additional Mesh WAP needs to be placed between them solely for the purpose
+of increasing the transmission speed.
+
+It gets even worse. WiFi clients have no way of knowing which access points have a wired uplink and which
+access points do not, they only look at signal strength.
+
+A WiFi client in the range of two Mesh WAPs may choose to connect to the Mesh WAP without a wired uplink
+just because it has a stronger signal strength even though all of its traffic ultimately goes through
+the other WAP anyway, with slower service speed to the client than if it had just connected to the WAP with
+the weaker signal strength.
+
+Home Networking should avoid Mesh WiFi whenever possible. Google and some other companies have spent a
+lot of money turning Mesh WiFi into a buzzword that makes it sound like this really cool modern way of
+spreading WiFi throughout the home, but they have a financial motive. They make a lot of money when
+you buy their expensive Mesh hardware.
+
+Standard Wireless Access Points using either Ethernet or using a MoCA network to
+uplink to the router is a \emph{much} better solution for whole-house WiFi.
+
+\section{Fiber Optic WAN}
+
+Whenever Fiber Optic service is available, it should be given strong weight over a Cable Modem as the
+Internet service to use. It is fast and Fiber Optic service does not use a metal conductor,
+thus eliminating one of the mechanism by which an equipment damaging and potential fire starting
+electrical surge can enter the premises.
+
+Fiber Optic Internet Service also frequently has much better upload performance than similarly priced
+DOCSIS Cable Modem service.
+
+With my \textmdef{Ideal Router}, all that would be needed is a Cat6 patch cable from the ONT `LAN'
+port to the router `WAN' port. If both the router and the ONT are housed in the `Telecommunication
+Access Box' an inexpensive off-the-shelf patch cable should do it.
+
+I am \emph{personally} only aware of one ONT that can be powered by PoE, the
+\myhref{https://dl.ubnt.com/guides/ufiber/UF-LOCO_QSG.pdf}{UFiber Loco}. If my \textmdef{Ideal Router}
+does get produced, hopefully more PoE powered ONTs will hit the market.
+
+\section{DOCSIS Cable Modem WAN}
+
+DOCSIS is the protocol by which Cable companies provide Internet service using the same coaxial cable
+by which they also provide Cable Television service.
+
+When a DOCSIS Cable Modem is used, it involves a coaxial cable from a Cable Company.
+
+When installed according to electrical code, the coaxial cable from the cable company will connect to a coaxial
+grounding block that has a \SI{10}{\awg} or larger bond wire properly connected to a electrical code
+approved source of ground. This grounding block is often (at least by me) referred to as the
+\textdef{Coax Demarcation Point}.
+
+The NEC does \emph{not} require a coaxial surge suppressor be used, and at least in California, it
+seems the vast majority of Cable Service companies opt not to install one when they set up cable service.
+
+It is my \emph{strong opinion} that a coaxial surge suppressor \textbf{SHOULD} be used. I would encourage
+people to read the Tii Technologies
+``\myhref{https://www.tiitech.com/pdfs/Tii_surge_protection.pdf}{Surge Protection's Essential Role in
+the Cable Telecommunications Triple Play}'' document.
+
+It is my \emph{strong opinion} that a proper \textmdef{Coax Demarcation Point} should use a
+\myhref{https://tiitech.com/wp-content/uploads/datasheets/coax-protectors/210_212.pdf}{Tii 212FF75F225-31}
+(or equivalent) as its grounding block.
+
+Now that the \textmdef{Coax Demarcation Point} has been defined, there are typically two scenarios under
+which a DOCSIS Cable Modem would be used that impact the house low-voltage wiring:
+
+\begin{enumerate}
+  \item Cable Modem service without Cable Television
+  \item Cable Modem service with Cable Television
+\end{enumerate}
+
+Under the first scenario, a coaxial cable would run from the \textmdef{Coax Demarcation Point} directly to a
+DOCSIS cable modem---perhaps with an inline attenuator if the signal is too hot.
+
+Under the second scenario, a passive two-way splitter is needed at the \textmdef{Coax Demarcation Point}.
+For DOCSIS modems prior to \docsis{3.1}, an Antronix
+\myhref{https://antronix.myshopify.com/products/cmc2002ha}{CMC2002HA} (or equivalent \SI{1002}{\mega\hertz})
+passive splitter should be used.
+
+For \docsis{3.1} `Phase 1', an Antronix
+\myhref{https://antronix.myshopify.com/products/cmc4002h}{CMC4002H} (or equivalent \SI{1218}{\mega\hertz})
+passive splitter should be used.
+
+For \docsis{3.1} `Phase 2' or \docsis{4.0}, an Antronix
+\myhref{https://rb.gy/542gd}{CMC5002H-A} (or equivalent \SI{1800}{\mega\hertz})
+passive splitter should be used. Note that at the time of writing, these splitters do not yet seem to be
+available to the general public.
+
+Regardless of the two-way passive splitter used, one output would have a coaxial cable that leads directly
+to a DOCSIS cable modem and the other output would have a coaxial cable that leads to the MoCA `Point of
+Entry' filter attached to the input of \xdband{} compatible \textmdef{Distribution Splitter}.
+
+I would like to explain that the reason for a passive two-way splitter coming off the \textmdef{Coax Demarcation
+Point} is to avoid a collision between the RF frequencies used by DOCSIS and \xdband{}. This
+collision does not happen with DOCSIS versions prior to \docsis{3.1} but those earlier DOCSIS versions are
+being phased out, so the cable infrastructure should be designed around the collision being a factor regardless
+of the DOCSIS version.
+
+For the \textmdef{Ideal Router} to uplink through the DOCSIS modem, there would need to be a Cat6 cable from the
+DOCSIS modem to the `RJ45 WAN Port' of the \textmdef{Ideal Router}.
+
+I am not personally aware of any DOCSIS modems that can be powered by PoE but hopefully the industry will
+start producing some. If the DOCSIS modem is powered by PoE, then the Cat6 cable should be \SIrange{23}{24}{\awg}
+solid copper so that it properly supports Power over Ethernet.
+
+\section{USB Modem WAN}
+
+\textbf{Disclaimer:} I have no personal experience with USB modems.
+
+A USB modem is a modem that provides Internet service through a USB interface. Historically they typically
+used the 3G or 4GLTE network and were rather disappointing, but now some 5G devices are starting to
+appear---like the \myhref{https://www.tricascadeinc.com/5g-dongle}{VOS 5G Network Adapter} that uses T-Mobile's
+5G network---that look quite promising.
+
+USB modems that use uplink connections other than over a cellular network (such as dial-up over POTS) also
+exist.
+
+When either Fiber Optic or DOCSIS service is available, those options \emph{probably} should be preferred
+for household Internet. When they are not available, or when they are not affordable, or when a `backup ISP'
+is desired, then a USB modem that uses the cellular network is often a good option.
+
+For those who do not have bank accounts, Fiber Optic or DOCSIS service may not be an option because the
+providers often want direct billing, but prepaid service with USB modems does exist.
+
+On an \textmdef{Ideal Router}, a USB Modem would connect to the `USB Modem Port'.
+
+\subsection{Backup ISP}
+
+When both the `RJ45 WAN Port' and the `USB Modem Port' on an \textmdef{Ideal Router} are connected, the
+router software should allow selection of which interface is the \emph{primary} ISP uplink and which interface
+should be used as the \emph{backup} ISP uplink.
+
+The VOS 5G USB modem seem to allow you to pay a small monthly fee for a small data cap but does
+not cut off service if you exceed that cap, instead just greatly reducing your speed. That actually makes
+them ideal as a backup service because if your main ISP is out long enough that you do hit the data cap---you
+still have service, just slower, but it would probably work just fine for retrieving the decryption key
+that an encrypted \atsc{3} broadcast would need.
+
+The VOS 5G however (allegedly, I have not bought one) requires a credit check. The impression I got was
+that the credit check is required by T-Mobile.
+
+Seriously, a credit check for a device that is purchased and then service is paid monthly? I need confirmation
+on that, but if true, that should be illegal.
+
+When I hear about credit checks being required when neither money nor property is being borrowed---I get
+\emph{extremely} angry. Classism in providing quality Internet Service is something that needs federal
+attention.
+
+The monthly plans for the T-Mobile service required by a `VOS 5G USB modem' are inexpensive enough they
+should be a means by which someone on the `wrong side of the tracks' can \emph{build} their credit, they
+should not be something that is restricted to those who already have sufficient credit.
+
+When those of us with some admittedly socialist leanings say we want essential utilities like Internet
+service to be public owned utilities, the blatant discrimination of the private capitalist market is
+exactly why.
+
+\section{Ideal Router Close Products}
+
+I am not \emph{personally} aware of any routers that currently meet my specification but I did find a few
+that are not too far off.
+
+\subsection{ER605v2}
+
+The \myhref{https://www.tp-link.com/us/business-networking/omada-sdn-router/er605/}{TP-Link ER605v2} is an
+existing product that is \emph{close} to the \textmdef{Ideal Router} specification, lacking the following
+features:
+
+\begin{itemize}
+  \item No PoE support. It must be powered by a transformer brick and can not power a PoE WAN device.
+  \item Limited USB Modem support. The USB jack is a USB~2.0 Type A jack. The 5G USB modems that I have seen
+        require USB~3.1 or newer.
+  \item No \xdband{} support. A separate \xdband{} adapter that uplinks to the wired LAN
+        is needed.
+  \item No OpenWrt support, but it \emph{appears} that is being worked on.
+\end{itemize}
+
+The ER605v2 also has more RJ45 Ethernet jacks than I would like in the \textmdef{Ideal Router}, one WAN and
+one LAN would help keep the device small which is an important consideration when the install location is
+inside a \tcab{}. Using a \textmdef{distribution switch}---even just an unmanaged
+Layer 2 switch---to provide all the needed wired Ethernet jacks is a pretty standard practice that helps
+reduce the load on the router.
+
+A second RJ45 WAN jack is useful for some people for a backup Internet connection but I really think that
+a USB modem providing that is sufficient.
+
+Nothing would stop manufacturers who think a second WAN and/or second LAN is beneficial from adding the
+capability.
+
+\subsection{G3100}
+
+The \myamazon{B082BLM2KH}{Verizon/Fios G3100} is an existing product that offers \moca{2.5} but has the
+following failures:
+
+\begin{itemize}
+  \item No PoE support. It must be powered by a transformer brick and can not power a PoE WAN device.
+  \item Limited USB Modem support. The USB jack is a USB~3.0 Type A jack. The 5G USB modems that I have seen
+        require USB~3.1 or newer.
+  \item It is big and bulky and would not fit in a \tcab{}.
+  \item It has built-in WiFi. WiFi should be separate.
+  \item Even worse, the built-in WiFi supports WPS. WPS is insecure and should be considered obsolete
+        technology that is \emph{never} supported in new hardware.
+  \item It has a caching nameserver. A nameserver should never be on the same physical hardware as the
+        router.
+  \item No OpenWrt support.
+\end{itemize}
+
+Ignoring PoE, if you take away the built-in WiFi---thus reducing the size---and the nameserver, update the USB port,
+add OpenWrt support, then the G3100 could be an \textmdef{Ideal Router}. It does have more RJ45 jacks than I like but
+that is not a hill to die on.
+
+
+\section{Potential `Ideal Router' Issues}
+
+The location of the \tcab{} sometime is such that the temperature inside it
+may exceed the temperature where it is safe to operate routers, modems, and ONTs.
+
+In such cases, temperature sensitive equipment---including the \textmdef{Ideal Router}---will need to be
+located where it is cool enough for them to safely operate, with the appropriate wires running back to the
+\tcab{}.
+
+Standard PoE (IEEE~802.3af) has a limit of about \SI{15}{\watt}. That may not be enough to power the
+\textmdef{Ideal Router} if the router is in turn also powering a DOCSIS modem or ONT. However, PoE+ (IEEE~802.3at)
+can handle \SI{30}{\watt} which \emph{should} be enough power. An electrical engineer would need to weigh in
+on the PoE requirements.
+
+It appears that most (if not all) 5G USB modems connect using a USB-C interface, while older USB modems typically
+used an USB-A interface. My suspicion is the right thing to do would be to use USB-C on an \textmdef{Ideal Router}
+and simply require USB modems that use USB-A to use an adapter.
+
+The \tcab{} is usually metal. This will likely cause problems for USB modem
+reception \emph{even beyond} the potential interference caused by nearby devices (and frequently, the nearby house
+power main).
+
+When using a USB modem, it may be necessary to use a USB modem that supports an antenna located elsewhere with a
+connecting cable.
+
+A long USB cable so the USB modem itself can be elsewhere may also work but USB~3.1 seems to have a specified
+\SI{18}{\meter} cable limit with most recommendations to keep it under \SI{10}{\meter}. I have seen antennas for 4G
+USB modems that have a connecting cable of \SI{30}{\meter} which gives a lot more flexibility (homes with an attic
+could put the antenna in the attic, where reception quality is often far better).
+
+
+
+
+Security alarm systems often have cellular Internet connections with such antennas, hopefully
+USB modems with such antennas also exist. At least historically they did, but I do not know if they are still made.
+
+
+\section{House Building Problematic Trend}
+
+From the 1980s to about the late 2000s, it was pretty standard for home builders to put both a telephone jack
+and a coaxial jack in every bedroom, plus the living room.
+
+In fact houses built from the late 1990s to the late 2000s often had Cat5e used for the telephone runs, including
+a telephone run to the Living Room as Sattelite Television Service often required a `POTS' land-line to confirm
+your geographic location and to order PPV content. Those Cat5e cables can usually be reterminated with RJ45 jacks
+so that they can deliver wired Ethernet.
+
+A modern trend though seems to be that home builders now only install one coaxial jack to the living room and
+\emph{maybe} one coaxial jack to master bedroom. For any additional low voltage wiring, they charge the buyer
+extra, with reports (on Reddit) of some charging as much as \$300 \emph{per additional drop}.
+
+If the FCC is going to allow encrypted \atsc{3.0} broadcasts that \emph{require} the \atsc{3.0} tuner have an
+Internet connection to decode, the current trend in home building needs to go back to the way things used to
+be.
+
+I can sort-of understand home builders not running network cables, but we need to put pressure on local codes
+to require that at minimum, an RG6 coaxial cable be run to \emph{every} bedroom plus the living room. That
+would at least allow MoCA to provide stable Internet access to any television plugged in to the coaxial jack.
+
+During an emergency, people need to be able to watch television for information. If watching television requires
+a stable Internet connection at the tuner, then it needs to be possible to deliver that stable Internet connection
+over the same coaxial cable that delivers the broadcast, and the only way that will become normal is if homes
+are built with a coaxial cable network providing jacks at all the logical locations where a television might
+be placed.
+
+A coaxial cable run to just the living room and master bedroom is not enough. If there is something like a cold
+storm and natural gas is cut off, the living room and master bedroom are too big. The family and pets will need
+to gather in a smaller bedroom to conserve heat, and if they still have power, they should be able to watch
+local news for instructions.
+
+In 2022, two-hundred and forty-six people died in the
+\myhref{https://www.texastribune.org/2022/01/02/texas-winter-storm-final-death-toll-246/}{Texas Winter Storm}.
+
+If a home has power but the furnace is not functioning, watching the news for instructions could be critical
+and doing so from within a small room where everyone is gathered could be critical as well.
+
+Dear FCC, for the love of all things good, please do not allow encrypted \atsc{3.0} broadcasts that require
+an active Internet connection to decrypt. Internet service itself is frequently lost during emergencies.
+
+\subsection{A Plea to Home Builders---Love Thy Neighbor}
+
+Whether or not local building codes require RG6 coaxial cable drops to every bedroom plus the living room (and I
+am hoping people will lobby for that), please commit to doing so.
+
+Furthermore, one more request that I do \emph{not} think should be code but I do think is a mark of a quality
+craftsman in the age of `Internet of Things':
+
+At strategic locations within the home, install those round `new work' ceiling junction boxes with a hanger bar
+that supports them between joists. Then close to them installed against a joist but above the ceiling, install
+one of those standard rectangular 1-gang junction boxes like outlets are often installed in.
+
+Run a Cat6 cable from a logical location for a \textmdef{LAN distribution switch} to the standard rectangular
+1-gang junction box, terminated in that junction box with an RJ45 keystone jack. Then run a short Cat6 patch cable
+with manufactured ends from the jack in that box into the ceiling junction box, and put a cover plate on it.
+
+That way if the resident ever wants quality WiFi in their house, they can install ceiling-mounted Wireless Access
+Points that are powered by PoE onto those junction boxes \emph{without} needing to cut the ceiling holes and running
+the network cables themselves.
+
+Cat6 should be used rather than Cat5e as some WiFi hot spots support data transfer rates that exceed
+\SI{1}{\giga\bit\per\second}.
+
+WiFi in houses has become standard and many appliances now want it. Quality workmanship will take that into
+consideration when building the house and pre-wire the house for ceiling-mounted access points in locations
+to offer full-house coverage.
+
+Don't forget the ceiling in any garages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

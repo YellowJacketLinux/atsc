@@ -1,0 +1,74 @@
+\documentclass[letterpaper,14pt,twoside=true]{scrbook}
+
+\usepackage[math]{anymouse}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\DeclareMathSymbol{\Omega}{\mathalpha}{letters}{"0A}% italics
+\DeclareMathSymbol{\varOmega}{\mathalpha}{operators}{"0A}% upright
+\providecommand*{\upOmega}{\varOmega}% for siunitx Ohm
+\usepackage{siunitx}
+\sisetup{per-mode=symbol,per-symbol = p}
+\DeclareSIUnit\bit{b}
+\DeclareSIUnit\awg{AWG}
+\DeclareSIUnit\vrms {\ensuremath{\mathrm{V_{rms}}}}
+
+\usepackage{graphicx}
+%\graphicspath{{figures/}}
+
+\newcommand{\textdef}[1]{\textbf{\textit{#1}}}
+\newcommand{\textmdef}[1]{\textit{#1}}
+
+\newcommand{\myhref}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+\newcommand{\myamazon}[2]{\href{https://www.amazon.com/dp/#1}{#2}\footnote{\url{https://www.amazon.com/dp/#1}}}
+% lazy way to make sure non-breaking spaces are used for versions
+\newcommand{\atsc}[1]{ATSC~#1}
+\newcommand{\moca}[1]{MoCA~#1}
+\newcommand{\wifi}[1]{WiFi~#1}
+\newcommand{\ieee}[1]{IEEE~#1}
+\newcommand{\docsis}[1]{DOCSIS~#1}
+% lazy way to have consistency in MoCA 2.0/2.5 band specification
+\newcommand{\dband}{`D-Band' MoCA}
+\newcommand{\xdband}{`Extended D-Band' MoCA}
+\newcommand{\eband}{`E-Band' MoCA}
+\newcommand{\fband}{`F-Band' MoCA}
+
+%misc
+\newcommand{\ngtv}{\textmdef{NextGenTV}}
+\newcommand{\tdefcab}{\textdef{Telecommunications Access Box}}
+\newcommand{\tcab}{\textmdef{Telecommunications Access Box}}
+
+\usepackage[colorlinks=true,allcolors=black]{hyperref}
+\title{Concerns about ATSC 3.0 Transition}
+
+\author{Michael A. Peters}
+
+% dev drafts - the date broadcast television first demonstrated
+%  Update to current date for published PDF
+\date{September 7, 1927}
+
+\begin{document}
+\maketitle
+
+\input{content/abstract.tex}
+
+\tableofcontents
+
+%\input{content/internet.tex}
+
+
+\appendix
+
+\input{apx/moca.tex}
+%\input{apx/otabp.tex}
+\input{apx/router.tex}
+
+
+
+
+
+
+
+\end{document}
