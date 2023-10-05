@@ -39,6 +39,8 @@
 \newcommand{\ngtv}{\textmdef{NextGenTV}}
 \newcommand{\tdefcab}{\textdef{Telecommunications Access Box}}
 \newcommand{\tcab}{\textmdef{Telecommunications Access Box}}
+\newcommand{\atscrange}{\SIrange{54}{608}{\mega\hertz}}
+\newcommand{\fmrange}{\SIrange{88}{108}{\mega\hertz}}
 
 \usepackage[colorlinks=true,allcolors=black]{hyperref}
 \title{Concerns about ATSC 3.0 Transition}
@@ -47,7 +49,8 @@
 
 % dev drafts - the date broadcast television first demonstrated
 %  Update to current date for published PDF
-\date{September 7, 1927}
+%\date{September 7, 1927}
+\InputIfFileExists{datehack.tex}{}{}
 
 \begin{document}
 \maketitle
@@ -64,6 +67,7 @@
 \input{apx/moca.tex}
 %\input{apx/otabp.tex}
 \input{apx/router.tex}
+\input{apx/tripleplay.tex}
 
 
 

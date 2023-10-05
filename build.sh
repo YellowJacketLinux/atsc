@@ -1,5 +1,13 @@
 #!/bin/bash
 
+gitdetect() {
+  which git > /dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    return 0
+  fi
+  return `git branch 2>&1 |grep -c '^\* main$'`
+}
+
 cleanup () {
   for file in "${1}.aux" "${1}.log" "${1}.out" "${1}.pdf" "${1}.toc"; do
     rm -f ${file}
@@ -15,6 +23,17 @@ makebatch () {
 }
 
 echo "Compiling PDF Documents. Please wait..."
+
+rm -f datehack.tex
+gitdetect
+if [ $? -eq 0 ]; then
+  cat <<EOF > datehack.tex
+% dev drafts - the date broadcast television first demonstrated
+%  Update to current date for published PDF
+\date{September 7, 1927}
+EOF
+fi
+#exit 0
 
 makebatch atsc
 if [ $? != 0 ]; then
