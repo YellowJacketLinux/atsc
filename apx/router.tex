@@ -135,14 +135,14 @@ Preliminary specifications for the \textmdef{Ideal Router} follow on the next pa
 \begin{description}
   \item[USB Modem Port] \hfill \\ The router \emph{must} have a USB 3.1 (or better) port that can optionally
        be used for a USB modem.
-  \item[RJ45 WAN Port] \hfill \\ The router \emph{must} have a single \SI{1}{\giga\bit\per\second} RJ45 WAN port
+  \item[RJ45 WAN Port] \hfill \\ The router \emph{must} have a single \qty{1}{\giga\bit\per\second} RJ45 WAN port
        that is capable of pass-through PoE to power a PoE DOCSIS modem or a PoE ONT (Optical Network Terminal).
-       That would reduce the odds of needing a \SI{120}{\vrms} power socket inside the Telecommunications Access
-       Box. The router RJ45 WAN port \emph{may} support speeds beyond \SI{1}{\giga\bit\per\second}.
-  \item[RJ45 LAN Port] \hfill \\ The router \emph{must} have a single \SI{1}{\giga\bit\per\second} RJ45 LAN port
+       That would reduce the odds of needing a \qty{120}{\vrms} power socket inside the Telecommunications Access
+       Box. The router RJ45 WAN port \emph{may} support speeds beyond \qty{1}{\giga\bit\per\second}.
+  \item[RJ45 LAN Port] \hfill \\ The router \emph{must} have a single \qty{1}{\giga\bit\per\second} RJ45 LAN port
        that is capable of powering the router via PoE. The router RJ45 LAN port \emph{may} support speeds beyond
-       \SI{1}{\giga\bit\per\second} and \emph{may} have additional RJ45 LAN ports.
-  \item[Coaxial MoCA LAN Port] \hfill \\ The router \emph{must} have a single \SI{75}{\ohm} F-jack port that
+       \qty{1}{\giga\bit\per\second} and \emph{may} have additional RJ45 LAN ports.
+  \item[Coaxial MoCA LAN Port] \hfill \\ The router \emph{must} have a single \qty{75}{\ohm} F-jack port that
        provides an `Extended D-Band' \moca{2.5} uplink to the LAN. The router \emph{may} implement \moca{3.0}
        as long as it maintains compatibility with \moca{2.0} and \moca{2.5}.
   \item[USB-PD Port] \hfill \\ The router \emph{should} have a single `USB-PD' port that can be used to power the
@@ -177,9 +177,9 @@ This switch is what I call the \textdef{LAN Distribution Switch} and should be l
 those network cables originate.
 
 When possible, the \textmdef{LAN Distribution Switch} should have a Cat6 uplink to the `RJ45 LAN Port' on the
-\textmdef{Ideal Router}. This uplink cable should be \SIrange{23}{24}{\awg} solid copper so that it properly
+\textmdef{Ideal Router}. This uplink cable should be \qtyrange{23}{24}{\awg} solid copper so that it properly
 supports Power over Ethernet. In other words, do not use one of those nifty `flat' Cat6 cables for this purpose,
-they tend to only be \SI{30}{\awg} and will overheat and potentially melt when carrying DC current.
+they tend to only be \qty{30}{\awg} and will overheat and potentially melt when carrying DC current.
 
 When possible, the \textmdef{LAN Distribution Switch} should support the PoE specification sufficient to
 power the \textmdef{Ideal Router} and any Wireless Access Points connected to it that are powered by PoE. A proper
@@ -197,7 +197,7 @@ transformers are powered off due to fire conditions.
 
 The coaxial cable network will need an \xdband{} compatible \textdef{Distribution Splitter} to distribute the
 coaxial signal to the destination jacks. To be \xdband{} compatible, it needs to support RF frequencies up to
-\SI{1675}{\mega\hertz}.
+\qty{1675}{\mega\hertz}.
 
 In some cases due to space or other constraints, the \textmdef{Distribution Splitter} may actually be a two- or
 three-way splitter that feeds additional splitters that then feed the coaxial cable runs to the final
@@ -231,9 +231,9 @@ The \xdband{} compatible splitters that I have extensive \emph{successful} exper
 
 At the input of the \textmdef{Distribution Splitter}, there should be a
 \myhref{https://www.antronix.com/products/filters}{MoCA `Point of Entry' Filter}. For \xdband{},
-the `Point of Entry' filter is basically just a \SI{1002}{\mega\hertz} low-pass filter.
+the `Point of Entry' filter is basically just a \qty{1002}{\mega\hertz} low-pass filter.
 
-With the coaxial network now properly prepared for MoCA, run a \SI{75}{\ohm} coaxial cable from the
+With the coaxial network now properly prepared for MoCA, run a \qty{75}{\ohm} coaxial cable from the
 `Coaxial MoCA LAN Port' on the \textmdef{Ideal Router} to the an available port on the
 \textmdef{Distribution Splitter} and any coaxial jack downstream of the \textmdef{Distribution Splitter}
 is a potential \xdband{} MoCA node.
@@ -256,7 +256,7 @@ Instead, use the input of the \textmdef{Distribution Splitter} as the connection
 `Coaxial MoCA LAN Port' on the \textmdef{Ideal Router}.
 
 Note that in this MoCA only scenario, the coaxial network will not be grounded either by the Cable Company
-demarcation or by the ATSC antenna coaxial grounding. It thus would be a good idea to connect a \SI{10}{\awg}
+demarcation or by the ATSC antenna coaxial grounding. It thus would be a good idea to connect a \qty{10}{\awg}
 bonding wire from the \textmdef{Distribution Splitter} to an NEC compliant source of ground just to provide better
 EMF shielding to the coaxial network.
 
@@ -281,7 +281,7 @@ have to run new RG6. There are two other solutions:
 \begin{enumerate}
   \item You can put the DirecTV SWM Power Inserter between the dish and the distribution splitter. Their
         power inserter is big and bulky as the transformer is part of it, and it requires access to a
-        \SI{120}{\vrms} socket. When that is not practical:
+        \qty{120}{\vrms} socket. When that is not practical:
   \item Note that I have not personally tried this. You can use a Holland Electric HRF-PI---which is
         very compact---between the dish and the distribution splitter. You will need a run of
         solid-copper core RG6 from the HRF-PI to a location where the DirecTV SWM Power Inserter can
@@ -295,7 +295,7 @@ have to run new RG6. There are two other solutions:
         steel RG6.
 \end{enumerate}
 
-For MoCA, DirecTV SWM receivers have built-in MoCA clients that use the `E-Band' (\SIrange{400}{700}{\mega\hertz}).
+For MoCA, DirecTV SWM receivers have built-in MoCA clients that use the `E-Band' (\qtyrange{400}{700}{\mega\hertz}).
 This is often called `DECA' by users but I am under the impression that `DECA' technically only refers to the
 stand-alone \eband{} adapter that DirecTV manufactures.
 
@@ -333,7 +333,7 @@ all DirecTV SWM receivers on the network will be able to get Internet access thr
 
 \textbf{Disclaimer:} I have no personal experience with Dish Network.
 
-My understanding is that Dish Network uses the MoCA `F-Band' (\SIrange{650}{875}{\mega\hertz}) and that if your Hopper
+My understanding is that Dish Network uses the MoCA `F-Band' (\qtyrange{650}{875}{\mega\hertz}) and that if your Hopper
 receiver has an Ethernet connection through its Ethernet jack, it will provide Internet through MoCA to all of
 the Joey receivers on the network.
 
@@ -369,9 +369,9 @@ using an \xdband{} adapter that is connected to that coaxial jack. Those with Di
 If more than one wired Ethernet device needs to uplink through that MoCA adapter, then again, an inexpensive
 Ethernet switch can be used between the various Ethernet devices and the MoCA adapter.
 
-Note that some WAPs are now capable of speeds beyond \SI{1}{\giga\bit\per\second}. If those access points
-have a \SI{2.5}{\giga\bit\per\second} Ethernet jack and is uplinking through MoCA, then it may be worth the
-extra money to buy a \moca{2.5} adapter that also has a \SI{2.5}{\giga\bit\per\second} Ethernet jack.
+Note that some WAPs are now capable of speeds beyond \qty{1}{\giga\bit\per\second}. If those access points
+have a \qty{2.5}{\giga\bit\per\second} Ethernet jack and is uplinking through MoCA, then it may be worth the
+extra money to buy a \moca{2.5} adapter that also has a \qty{2.5}{\giga\bit\per\second} Ethernet jack.
 
 If the coaxial jack is also needed for a television or Cable set-top box, you can use an \xdband{} compatible
 passive two-way splitter to provide both a MoCA connection and a television connection.
@@ -385,28 +385,28 @@ If you do not like to waste money, be careful about determining what WiFi bands 
 WiFi bands the capitalist marketing machine tells you that you need.
 
 \wifi{3} (\ieee{802.11g}), \wifi{4} (\ieee{802.11n}), \wifi{5} (\ieee{802.11ac}), and \wifi{6} (\ieee{802.11ax})
-prior to \wifi{6e} support WiFi operation on both the \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} bands.
+prior to \wifi{6e} support WiFi operation on both the \qty{2.4}{\giga\hertz} and \qty{5}{\giga\hertz} bands.
 These WiFi Access Points are often called `Dual-Band' WiFi Access Points.
 
-The \SI{2.4}{\giga\hertz} band has a lower data transfer rate but has a much longer range, making it ideal
+The \qty{2.4}{\giga\hertz} band has a lower data transfer rate but has a much longer range, making it ideal
 for most IoT devices but not as ideal for high data consumption applications, like downloading all the
 video advertisements on a web page.
 
-The \SI{5}{\giga\hertz} band has a much higher data transfer rate but with a much shorter range, making it
+The \qty{5}{\giga\hertz} band has a much higher data transfer rate but with a much shorter range, making it
 less ideal for IoT devices that do not need a high data transfer rate but much \emph{much} better for
 devices that do need a high data transfer rate.
 
-\wifi{6e} (\ieee{802.11ax} extended) and \wifi{7} (\ieee{802.11be}) also support the \SI{6}{\giga\hertz} band.
+\wifi{6e} (\ieee{802.11ax} extended) and \wifi{7} (\ieee{802.11be}) also support the \qty{6}{\giga\hertz} band.
 
-The biggest benefit of the \SI{6}{\giga\hertz} band is that it reduces the congestion of devices fighting
-for bandwidth from the \SI{5}{\giga\hertz} band. This allows more high-data consumption devices to connect
-at the same time (some using \SI{5}{\giga\hertz}, others \SI{6}{\giga\hertz}) and also makes it easier to
-allocate \SI{160}{\mega\hertz} wide channels when \emph{very} high data consumption is genuinely needed
+The biggest benefit of the \qty{6}{\giga\hertz} band is that it reduces the congestion of devices fighting
+for bandwidth from the \qty{5}{\giga\hertz} band. This allows more high-data consumption devices to connect
+at the same time (some using \qty{5}{\giga\hertz}, others \qty{6}{\giga\hertz}) and also makes it easier to
+allocate \qty{160}{\mega\hertz} wide channels when \emph{very} high data consumption is genuinely needed
 but a wired network is not available.
 
 I do not believe the vast majority of households will see any benefit from \wifi{6e} or \wifi{7} that they
-would not also see from less expensive \wifi{6} \emph{without} the \SI{6}{\giga\hertz} band. The vast majority
-of households simply do not have the congestion on the \SI{5}{\giga\hertz} band to justify an additional band,
+would not also see from less expensive \wifi{6} \emph{without} the \qty{6}{\giga\hertz} band. The vast majority
+of households simply do not have the congestion on the \qty{5}{\giga\hertz} band to justify an additional band,
 \emph{especially} if stationary high data consuming devices like gaming consoles can get their uplink to the
 router through MoCA and/or standard Ethernet.
 
@@ -421,9 +421,9 @@ needed.
 
 This should however be a \emph{last} resort solution.
 
-The way Mesh WiFi works, the WAPs use three bands. In addition to the standard \SI{2.4}{\giga\hertz} and
-\SI{5}{\giga\hertz} bands that the access points offer to clients to connect, they have a third antenna
-that either also uses the \SI{5}{\giga\hertz} band or in recent systems, the \SI{6}{\giga\hertz} band.
+The way Mesh WiFi works, the WAPs use three bands. In addition to the standard \qty{2.4}{\giga\hertz} and
+\qty{5}{\giga\hertz} bands that the access points offer to clients to connect, they have a third antenna
+that either also uses the \qty{5}{\giga\hertz} band or in recent systems, the \qty{6}{\giga\hertz} band.
 
 This third band is used for the Mesh WAPs to communicate with each other.
 
@@ -479,7 +479,7 @@ by which they also provide Cable Television service.
 When a DOCSIS Cable Modem is used, it involves a coaxial cable from a Cable Company.
 
 When installed according to electrical code, the coaxial cable from the cable company will connect to a coaxial
-grounding block that has a \SI{10}{\awg} or larger bond wire properly connected to a electrical code
+grounding block that has a \qty{10}{\awg} or larger bond wire properly connected to a electrical code
 approved source of ground. This grounding block is often (at least by me) referred to as the
 \textdef{Coax Demarcation Point}.
 
@@ -508,15 +508,15 @@ DOCSIS cable modem---perhaps with an inline attenuator if the signal is too hot.
 
 Under the second scenario, a passive two-way splitter is needed at the \textmdef{Coax Demarcation Point}.
 For DOCSIS modems prior to \docsis{3.1}, an Antronix
-\myhref{https://antronix.myshopify.com/products/cmc2002ha}{CMC2002HA} (or equivalent \SI{1002}{\mega\hertz})
+\myhref{https://antronix.myshopify.com/products/cmc2002ha}{CMC2002HA} (or equivalent \qty{1002}{\mega\hertz})
 passive splitter should be used.
 
 For \docsis{3.1} `Phase 1', an Antronix
-\myhref{https://antronix.myshopify.com/products/cmc4002h}{CMC4002H} (or equivalent \SI{1218}{\mega\hertz})
+\myhref{https://antronix.myshopify.com/products/cmc4002h}{CMC4002H} (or equivalent \qty{1218}{\mega\hertz})
 passive splitter should be used.
 
 For \docsis{3.1} `Phase 2' or \docsis{4.0}, an Antronix
-\myhref{https://rb.gy/542gd}{CMC5002H-A} (or equivalent \SI{1800}{\mega\hertz})
+\myhref{https://rb.gy/542gd}{CMC5002H-A} (or equivalent \qty{1800}{\mega\hertz})
 passive splitter should be used. Note that at the time of writing, these splitters do not yet seem to be
 available to the general public.
 
@@ -534,7 +534,7 @@ For the \textmdef{Ideal Router} to uplink through the DOCSIS modem, there would 
 DOCSIS modem to the `RJ45 WAN Port' of the \textmdef{Ideal Router}.
 
 I am not personally aware of any DOCSIS modems that can be powered by PoE but hopefully the industry will
-start producing some. If the DOCSIS modem is powered by PoE, then the Cat6 cable should be \SIrange{23}{24}{\awg}
+start producing some. If the DOCSIS modem is powered by PoE, then the Cat6 cable should be \qtyrange{23}{24}{\awg}
 solid copper so that it properly supports Power over Ethernet.
 
 \section{USB Modem WAN}
@@ -652,9 +652,9 @@ In such cases, temperature sensitive equipment---including the \textmdef{Ideal R
 located where it is cool enough for them to safely operate, with the appropriate wires running back to the
 \tcab{}.
 
-Standard PoE (IEEE~802.3af) has a limit of about \SI{15}{\watt}. That may not be enough to power the
+Standard PoE (IEEE~802.3af) has a limit of about \qty{15}{\watt}. That may not be enough to power the
 \textmdef{Ideal Router} if the router is in turn also powering a DOCSIS modem or ONT. However, PoE+ (IEEE~802.3at)
-can handle \SI{30}{\watt} which \emph{should} be enough power. An electrical engineer would need to weigh in
+can handle \qty{30}{\watt} which \emph{should} be enough power. An electrical engineer would need to weigh in
 on the PoE requirements.
 
 It appears that most (if not all) 5G USB modems connect using a USB-C interface, while older USB modems typically
@@ -669,8 +669,8 @@ When using a USB modem, it may be necessary to use a USB modem that supports an 
 connecting cable.
 
 A long USB cable so the USB modem itself can be elsewhere may also work but USB~3.1 seems to have a specified
-\SI{18}{\meter} cable limit with most recommendations to keep it under \SI{10}{\meter}. I have seen antennas for 4G
-USB modems that have a connecting cable of \SI{30}{\meter} which gives a lot more flexibility (homes with an attic
+\qty{18}{\meter} cable limit with most recommendations to keep it under \qty{10}{\meter}. I have seen antennas for 4G
+USB modems that have a connecting cable of \qty{30}{\meter} which gives a lot more flexibility (homes with an attic
 could put the antenna in the attic, where reception quality is often far better).
 
 
@@ -743,14 +743,13 @@ Points that are powered by PoE onto those junction boxes \emph{without} needing 
 the network cables themselves.
 
 Cat6 should be used rather than Cat5e as some WiFi hot spots support data transfer rates that exceed
-\SI{1}{\giga\bit\per\second}.
+\qty{1}{\giga\bit\per\second}.
 
 WiFi in houses has become standard and many appliances now want it. Quality workmanship will take that into
 consideration when building the house and pre-wire the house for ceiling-mounted access points in locations
 to offer full-house coverage.
 
 Don't forget the ceiling in any garages.
-
 
 
 
